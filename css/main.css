@@ -100,31 +100,6 @@ body {
   font-size: 0.75rem;
 }
 
-.sub-nav-bar {
-  background-color: #161f33;
-  border-top: 1px solid rgba(255,255,255,0.05);
-}
-
-.sub-nav-container ul {
-  display: flex;
-  list-style: none;
-  padding: 0 3rem;
-}
-
-.sub-nav-container a {
-  color: #94a3b8;
-  text-decoration: none;
-  padding: 0.8rem 1.2rem;
-  display: block;
-  font-size: 0.9rem;
-}
-
-.sub-nav-container a.active, 
-.sub-nav-container a:hover {
-  color: #fff;
-  border-bottom: 2px solid var(--accent-yellow);
-}
-
 /* bamnner hero */
 .hero-static-banner {
   min-height: 300px;
@@ -173,39 +148,6 @@ body {
   gap: 2rem;
 }
 
-.popular-categories-card {
-  width: 250px;
-  background: #fff;
-  padding: 1.2rem;
-  border-radius: 8px;
-  border: 1px solid var(--border-color);
-  flex-shrink: 0;
-  height: fit-content;
-}
-
-.category-header-tag h3 {
-  font-size: 1.1rem;
-  margin-bottom: 1rem;
-  border-bottom: 2px solid var(--accent-yellow);
-  padding-bottom: 0.4rem;
-}
-
-.category-list {
-  list-style: none;
-}
-
-.category-list-item a {
-  display: flex;
-  justify-content: space-between;
-  padding: 0.5rem 0;
-  color: #475569;
-  text-decoration: none;
-  font-size: 0.9rem;
-}
-
-.category-list-item a:hover {
-  color: var(--accent-pink);
-}
 
 .products-shelf-grid {
   flex: 1;
@@ -345,4 +287,96 @@ body {
   margin-top: 2rem;
   padding-top: 1rem;
   font-size: 0.85rem;
+}
+
+/* --- BARRA DE NAVEGACIÓN Y MENÚ HAMBURGUESA --- */
+.sub-nav-bar {
+  background-color: #121826;
+  padding: 0.5rem 0;
+}
+
+.sub-nav-container {
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+  padding: 0 3rem;
+  position: relative;
+}
+
+/* Links principales alineados horizontalmente */
+.main-nav-links {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center;
+  gap: 1.5rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.main-nav-links a {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+/* Botón Hamburguesa */
+.hamburger-menu {
+  position: relative;
+}
+
+.hamburger-btn {
+  list-style: none;
+  cursor: pointer;
+  background-color: #f5b700;
+  color: #000000;
+  font-weight: bold;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  user-select: none;
+  font-size: 0.9rem;
+}
+
+.hamburger-btn::-webkit-details-marker {
+  display: none;
+}
+
+/* Panel flotante VERTICAL de categorías */
+.hamburger-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin-top: 0.5rem;
+  background-color: #0b0f19;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 6px;
+  width: 230px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.6);
+  list-style: none;
+  z-index: 1000;
+  padding: 0.5rem 0;
+  display: flex !important;
+  flex-direction: column !important; /* Fuerza orden vertical */
+}
+
+.hamburger-dropdown li {
+  width: 100%;
+}
+
+.hamburger-dropdown li a {
+  display: block;
+  padding: 0.65rem 1.2rem;
+  color: #e2e8f0;
+  text-decoration: none;
+  font-size: 0.88rem;
+  white-space: nowrap;
+}
+
+.hamburger-dropdown li a:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #f5b700;
 }
