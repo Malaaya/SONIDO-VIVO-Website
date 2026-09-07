@@ -91,7 +91,7 @@
             <h3>Nuestras Marcas Oficiales</h3>
             <p>Marcas líderes con garantía directa de fábrica</p>
         </div>
-            <div class="brands-showcase">
+        <div class="brands-showcase">
             <span class="brand-name-tag">YAMAHA</span>
             <span class="brand-name-tag">FENDER</span>
             <span class="brand-name-tag">MARSHALL</span>
@@ -101,37 +101,37 @@
         </div>
     </section>
 
+    </main>
+
     <!-- Footer -->
     <footer class="deep-footer">
-        <div class="footer-inner">
+    <div class="footer-inner">
         <div class="footer-col-about">
-            <div class="footer-logo">SONIDO <span>VIVO</span></div>
-            <p style="font-size: 0.88rem; line-height: 1.6;">
-            Tienda especializada en instrumentos y audio profesional con 11 años de trayectoria en la Región de Valparaíso.
-            </p>
-            <div class="footer-payment-badges">
-                <span class="badge-payment">Compra Segura</span>
-                <span class="badge-payment">Webpay Plus</span>
-                <span class="badge-payment">Transbank</span>
-                <span class="badge-payment">Visa / Redcompra</span>
-            </div>
+        <div class="footer-logo">SONIDO <span>VIVO</span></div>
+        <p style="font-size: 0.88rem; line-height: 1.6;">Tienda especializada en instrumentos y audio profesional con 11 años de trayectoria en la Región de Valparaíso.</p>
+        <div class="footer-payment-badges">
+            <span class="badge-payment">Compra Segura</span>
+            <span class="badge-payment">Webpay Plus</span>
+            <span class="badge-payment">Transbank</span>
+            <span class="badge-payment">Visa / Redcompra</span>
+        </div>
         </div>
 
         <div>
-            <h4 class="footer-col-title">Links Importantes</h4>
-            <ul class="footer-links-list">
-                <li><a href="productos.html">Catálogo Completo</a></li>
-                <li><a href="nosotros.html">Quiénes Somos</a></li>
-                <li><a href="blogs.html">Blog Musical</a></li>
-            </ul>
+        <h4 class="footer-col-title">Links Importantes</h4>
+        <ul class="footer-links-list">
+          <li><a href="productos.html">Catálogo Completo</a></li>
+          <li><a href="nosotros.html">Quiénes Somos</a></li>
+          <li><a href="blogs.html">Blog Musical</a></li>
+        </ul>
         </div>
 
         <div>
-            <h4 class="footer-col-title">Atención al Cliente</h4>
-            <ul class="footer-links-list">
+        <h4 class="footer-col-title">Atención al Cliente</h4>
+        <ul class="footer-links-list">
             <li><a href="contacto.html">Formulario de Contacto</a></li>
             <li><a href="admin/home.html">Panel de Vendedores</a></li>
-            </ul>
+        </ul>
         </div>
 
         <div class="footer-contact-items">
@@ -142,17 +142,17 @@
             <p>🕒 Sábados: 10:30 a 14:30 hrs</p>
             <p>📍 Viña del Mar, Región de Valparaíso</p>
         </div>
-        </div>
+    </div>
 
-        <div class="deep-footer-bottom">
+    <div class="deep-footer-bottom">
         <p>&copy; 2026 Sonido Vivo Ltda. - VRK.</p>
-        </div>
+    </div>
     </footer>
 
     <!-- Datos -->
     <script src="js/datos.js"></script>
     <script>
-        document.addEventListener("DOMContentLoaded", () => {
+    document.addEventListener("DOMContentLoaded", () => {
         // Contador carrito
         const carrito = JSON.parse(localStorage.getItem("sonido_vivo_carrito")) || [];
         const totalItems = carrito.reduce((acc, item) => acc + item.cantidad, 0);
@@ -163,26 +163,24 @@
         const contenedor = document.getElementById("contenedor-ofertas");
         const productos = JSON.parse(localStorage.getItem("sonido_vivo_productos")) || (typeof PRODUCTOS_INICIALES !== "undefined" ? PRODUCTOS_INICIALES : []);
 
-        if (contenedor && productos.length > 0) {
-            const destacados = productos.slice(0, 4);
-            contenedor.innerHTML = destacados.map(prod => {
+    if (contenedor && productos.length > 0) {
+        const destacados = productos.slice(0, 4);
+        contenedor.innerHTML = destacados.map(prod => {
             const precioAnterior = Math.round(prod.precio * 1.15);
             return `
-                <article class="shelf-product-card">
+            <article class="shelf-product-card">
                 <span class="badge-offer">¡OFERTA!</span>
                 <img class="shelf-product-img" src="${prod.imagen}" alt="${prod.nombre}" loading="lazy">
                 <div class="shelf-product-body">
                     <h4 class="shelf-product-title">${prod.nombre}</h4>
                     <p class="shelf-product-old-price">$${precioAnterior.toLocaleString("es-CL")}</p>
                     <p class="shelf-product-price">$${prod.precio.toLocaleString("es-CL")}</p>
-                    <a href="detalle-producto.html?codigo=${prod.codigo}" class="btn-slide-cta" style="padding: 0.4rem 0.8rem; font-size: 0.85rem;">
-                    Ver Detalle
+                    <a href="detalle-producto.html?codigo=${prod.codigo}" class="btn-slide-cta" style="padding: 0.4rem 0.8rem; font-size: 0.85rem;">Ver Detalle
                     </a>
                 </div>
-                </article>
-            `;
-            }).join("");
-        }
+            </article>`;
+        }).join("");
+    }
 
         // Funcionalidad de búsqueda
         const searchInput = document.getElementById("header-search-input");
