@@ -1,0 +1,348 @@
+:root {
+  --bg-dark: #0b0f19;
+  --accent-pink: #e91e63;
+  --accent-yellow: #f5b700;
+  --text-light: #f8fafc;
+  --text-dark: #1e293b;
+  --card-bg: #ffffff;
+  --border-color: #e2e8f0;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+}
+
+body {
+  background-color: #f1f5f9;
+  color: var(--text-dark);
+}
+
+/* encabezado de pagina y barra de navegacion */ 
+.site-header {
+  background-color: var(--bg-dark);
+  color: var(--text-light);
+}
+
+.top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 3rem;
+  gap: 1.5rem;
+}
+
+.brand-logo a {
+  color: #fff;
+  font-size: 1.6rem;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.brand-logo span {
+  color: var(--accent-yellow);
+}
+
+.header-search-bar {
+  display: flex;
+  flex: 1;
+  max-width: 500px;
+}
+
+.header-search-bar input {
+  width: 100%;
+  padding: 0.6rem 1rem;
+  border: none;
+  border-radius: 4px 0 0 4px;
+  outline: none;
+}
+
+.header-search-bar button {
+  padding: 0.6rem 1.2rem;
+  background-color: var(--accent-yellow);
+  border: none;
+  border-radius: 0 4px 4px 0;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.user-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.btn-auth-pill {
+  color: #fff;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border: 1px solid rgba(255,255,255,0.3);
+  border-radius: 20px;
+  font-size: 0.85rem;
+}
+
+.cart-icon-btn {
+  text-decoration: none;
+  position: relative;
+  font-size: 1.3rem;
+}
+
+.cart-badge-count {
+  position: absolute;
+  top: -8px;
+  right: -10px;
+  background: var(--accent-pink);
+  color: white;
+  border-radius: 50%;
+  padding: 2px 6px;
+  font-size: 0.75rem;
+}
+
+.sub-nav-bar {
+  background-color: #161f33;
+  border-top: 1px solid rgba(255,255,255,0.05);
+}
+
+.sub-nav-container ul {
+  display: flex;
+  list-style: none;
+  padding: 0 3rem;
+}
+
+.sub-nav-container a {
+  color: #94a3b8;
+  text-decoration: none;
+  padding: 0.8rem 1.2rem;
+  display: block;
+  font-size: 0.9rem;
+}
+
+.sub-nav-container a.active, 
+.sub-nav-container a:hover {
+  color: #fff;
+  border-bottom: 2px solid var(--accent-yellow);
+}
+
+/* bamnner hero */
+.hero-static-banner {
+  min-height: 300px;
+  padding: 3rem;
+  display: flex;
+  align-items: center;
+  background: linear-gradient(90deg, rgba(11,15,25,0.92) 0%, rgba(11,15,25,0.65) 55%, rgba(233,30,99,0.3) 100%), url('https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=1400&auto=format&fit=crop&q=80') center/cover no-repeat;
+}
+
+.hero-static-title {
+  color: #ffffff;
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.hero-static-desc {
+  color: #e2e8f0;
+  font-size: 1.1rem;
+  margin-bottom: 1.5rem;
+  max-width: 600px;
+}
+
+.btn-slide-cta {
+  background-color: var(--accent-yellow);
+  color: #000;
+  padding: 0.6rem 1.2rem;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 4px;
+  display: inline-block;
+}
+
+/* sección de tienda */
+.shop-section-container {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+.shop-header-intro {
+  margin-bottom: 1.5rem;
+}
+
+.shop-layout {
+  display: flex;
+  gap: 2rem;
+}
+
+.popular-categories-card {
+  width: 250px;
+  background: #fff;
+  padding: 1.2rem;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  flex-shrink: 0;
+  height: fit-content;
+}
+
+.category-header-tag h3 {
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+  border-bottom: 2px solid var(--accent-yellow);
+  padding-bottom: 0.4rem;
+}
+
+.category-list {
+  list-style: none;
+}
+
+.category-list-item a {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 0;
+  color: #475569;
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+.category-list-item a:hover {
+  color: var(--accent-pink);
+}
+
+.products-shelf-grid {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1.5rem;
+}
+
+.shelf-product-card {
+  background: #fff;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.badge-offer {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: var(--accent-pink);
+  color: white;
+  font-size: 0.7rem;
+  font-weight: bold;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.shelf-product-img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+}
+
+.shelf-product-body {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.shelf-product-title {
+  font-size: 0.95rem;
+  margin-bottom: 0.5rem;
+}
+
+.shelf-product-old-price {
+  text-decoration: line-through;
+  color: #94a3b8;
+  font-size: 0.8rem;
+}
+
+.shelf-product-price {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #0f172a;
+  margin-bottom: 1rem;
+}
+
+/* marcas */
+.brands-section {
+  max-width: 1200px;
+  margin: 3rem auto;
+  padding: 0 1rem;
+}
+
+.brands-showcase {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+}
+
+.brand-name-tag {
+  background: #fff;
+  padding: 0.8rem 1.5rem;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  font-weight: bold;
+  color: #334155;
+}
+
+/* pie de página */
+.deep-footer {
+  background-color: var(--bg-dark);
+  color: #94a3b8;
+  padding: 3rem 1rem 1rem;
+}
+
+.footer-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 2rem;
+}
+
+.footer-logo {
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: #fff;
+  margin-bottom: 0.8rem;
+}
+
+.footer-logo span { color: var(--accent-yellow); }
+
+.footer-col-title {
+  color: #fff;
+  margin-bottom: 1rem;
+}
+
+.footer-links-list {
+  list-style: none;
+}
+
+.footer-links-list a {
+  color: #94a3b8;
+  text-decoration: none;
+  line-height: 2;
+  font-size: 0.9rem;
+}
+
+.badge-payment {
+  display: inline-block;
+  background: rgba(255,255,255,0.1);
+  font-size: 0.75rem;
+  padding: 3px 8px;
+  border-radius: 4px;
+  margin: 2px;
+}
+
+.deep-footer-bottom {
+  text-align: center;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  margin-top: 2rem;
+  padding-top: 1rem;
+  font-size: 0.85rem;
+}
