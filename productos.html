@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Catálogo - Sonido Vivo</title>
+  <link rel="stylesheet" href="css/main.css?v=4">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="top-bar">
+      <div class="brand-logo">
+        <a href="index.html">SONIDO <span>VIVO</span></a>
+      </div>
+      <div class="header-search-bar">
+        <input type="text" id="search-input" placeholder="Buscar producto, marca o categoría...">
+        <button type="button" id="search-button">Buscar</button>
+      </div>
+      <div class="user-actions">
+        <a href="index.html" class="btn-auth-pill">← Volver al Inicio</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="shop-section-container">
+    <div class="shop-header-intro">
+      <h2 id="titulo-categoria">Catálogo Completo</h2>
+      <p>Explora todos nuestros instrumentos y equipos con garantía directa.</p>
+    </div>
+
+    <!-- Contenedor vacío donde el Script inyectará los 51 productos -->
+    <div class="products-shelf-grid" id="contenedor-productos"></div>
+  </main>
+
+  <!-- Importaciones desde la carpeta js/ -->
+  <script src="js/datos.js"></script>
+  <script src="js/catalogo.js"></script>
+
+  <!-- Lógica para la barra de búsqueda del encabezado -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const searchBtn = document.getElementById('search-button');
+      const searchInput = document.getElementById('search-input');
+
+      if (searchBtn && searchInput) {
+        searchBtn.addEventListener('click', () => {
+          const query = searchInput.value.trim();
+          if (query) {
+            window.location.href = `productos.html?buscar=${encodeURIComponent(query)}`;
+          }
+        });
+
+        searchInput.addEventListener('keypress', (e) => {
+          if (e.key === 'Enter') {
+            const query = e.target.value.trim();
+            if (query) {
+              window.location.href = `productos.html?buscar=${encodeURIComponent(query)}`;
+            }
+          }
+        });
+      }
+    });
+  </script>
+</body>
+</html>
