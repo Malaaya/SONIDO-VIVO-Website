@@ -9,7 +9,7 @@
 </head>
 <body>
 
-<!-- Header Superior -->
+  <!-- Header Superior -->
   <header class="site-header">
     <div class="top-bar">
       <div class="brand-logo">
@@ -52,7 +52,6 @@
           <li><a href="index.html">Inicio</a></li>
           <li><a href="productos.html">Ver Catálogo</a></li>
           <li><a href="nosotros.html">Sobre Nosotros</a></li>
-          <li><a href="blogs.html">Blogs</a></li>
           <li><a href="contacto.html">Contacto</a></li>
           <li><a href="admin/home.html">Portal Admin</a></li>
         </ul>
@@ -60,31 +59,38 @@
     </nav>
   </header>
 
-  <!-- Importaciones desde la carpeta js/ -->
+  <!-- Contenido Principal: Grilla del Catálogo -->
+  <main class="shop-section-container" style="max-width: 1200px; margin: 2rem auto; padding: 0 1rem;">
+    <div class="shop-header-intro" style="text-align: center; margin-bottom: 2rem;">
+      <h2 id="titulo-categoria" style="font-size: 2rem; color: #0f172a; margin-bottom: 0.5rem;">Catálogo Completo</h2>
+      <p style="color: #64748b; font-size: 1rem;">Explora todos nuestros instrumentos y equipos con garantía directa.</p>
+    </div>
+
+    <!-- Contenedor donde catalogo.js inyecta las tarjetas -->
+    <div class="products-shelf-grid" id="contenedor-productos"></div>
+  </main>
+
+  <!-- Importaciones desde la carpeta js/ (Rutas relativas e inmutables) -->
   <script src="js/datos.js"></script>
   <script src="js/catalogo.js"></script>
 
-  <!-- Lógica para la barra de búsqueda del encabezado -->
+  <!-- Lógica de Búsqueda del Header -->
   <script>
     document.addEventListener("DOMContentLoaded", () => {
-      const searchBtn = document.getElementById('search-button');
-      const searchInput = document.getElementById('search-input');
+      const searchBtn = document.getElementById('btn-header-search');
+      const searchInput = document.getElementById('header-search-input');
+
+      function realizarBusqueda() {
+        const query = searchInput.value.trim();
+        if (query) {
+          window.location.href = `productos.html?buscar=${encodeURIComponent(query)}`;
+        }
+      }
 
       if (searchBtn && searchInput) {
-        searchBtn.addEventListener('click', () => {
-          const query = searchInput.value.trim();
-          if (query) {
-            window.location.href = `productos.html?buscar=${encodeURIComponent(query)}`;
-          }
-        });
-
+        searchBtn.addEventListener('click', realizarBusqueda);
         searchInput.addEventListener('keypress', (e) => {
-          if (e.key === 'Enter') {
-            const query = e.target.value.trim();
-            if (query) {
-              window.location.href = `productos.html?buscar=${encodeURIComponent(query)}`;
-            }
-          }
+          if (e.key === 'Enter') realizarBusqueda();
         });
       }
     });
