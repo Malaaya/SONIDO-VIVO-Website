@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Registro de Clientes - Sonido Vivo Viña del Mar.">
-  <title>Crear Cuenta | Sonido Vivo</title>
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%23d00000'/><text x='32' y='36' font-family='Arial, sans-serif' font-style='italic' font-weight='bold' font-size='38' fill='%23ffffff' text-anchor='middle' dominant-baseline='central' letter-spacing='-4'>sv</text></svg>">
-  <link rel="stylesheet" href="css/main.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Registro de Clientes - Sonido Vivo Viña del Mar.">
+    <title>Crear Cuenta | Sonido Vivo</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%23d00000'/><text x='32' y='36' font-family='Arial, sans-serif' font-style='italic' font-weight='bold' font-size='38' fill='%23ffffff' text-anchor='middle' dominant-baseline='central' letter-spacing='-4'>sv</text></svg>">
+    <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
 
-  <!-- Header Superior -->
-  <header class="site-header">
+    <!-- Header Superior -->
+    <header class="site-header">
     <div class="top-bar">
       <div class="brand-logo">
         <a href="index.html">SONIDO <span>VIVO</span></a>
@@ -58,10 +58,10 @@
         </ul>
       </div>
     </nav>
-  </header>
+    </header>
 
-  <!-- Formulario de Registro -->
-  <main style="max-width: 600px; margin: 3rem auto; padding: 0 1.5rem;">
+    <!-- Formulario de Registro -->
+    <main style="max-width: 600px; margin: 3rem auto; padding: 0 1.5rem;">
     <div style="background: #ffffff; padding: 2.5rem; border-radius: 10px; border: 1px solid var(--border-color); box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
       
       <h2 style="font-size: 1.8rem; margin-bottom: 0.5rem; color: #0f172a;">Crear Cuenta de Cliente</h2>
@@ -116,11 +116,26 @@
           Registrarme
         </button>
 
-      </form>
+        </form>
     </div>
-  </main>
+    </main>
 
-  <!-- Script específico de registro -->
-  <script src="js/registro.js"></script>
+    <!-- Script específico de registro -->
+    <script src="js/registro.js"></script>
+
+    <!-- Modal de confirmación de Registro -->
+    <div id="modal-exito-registro" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.75); backdrop-filter: blur(4px); z-index: 9999; align-items: center; justify-content: center;">
+        <div style="background: #ffffff; padding: 2.5rem; border-radius: 16px; max-width: 450px; width: 90%; text-align: center; box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2);">
+        <div style="font-size: 3rem; margin-bottom: 0.5rem;">🎸</div>
+        <h3 style="font-size: 1.5rem; color: #0f172a; margin-bottom: 0.8rem; font-weight: 800;">¡Cuenta Creada con Éxito!</h3>
+        <p style="color: #475569; font-size: 0.95rem; line-height: 1.5; margin-bottom: 1.8rem;">
+        Bienvenido a Sonido Vivo. Tus datos han sido registrados en el sistema y ya puedes iniciar sesión para gestionar tus pedidos.
+        </p>
+        <button id="btn-ir-login" style="background: var(--accent-pink, #e91e63); color: #ffffff; font-weight: 700; border: none; padding: 0.8rem 1.8rem; border-radius: 8px; font-size: 1rem; cursor: pointer; transition: background 0.2s;">
+        Ir a Iniciar Sesión
+        </button>
+        </div>
+    </div>
+
 </body>
 </html>
