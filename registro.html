@@ -15,17 +15,43 @@
       <div class="brand-logo">
         <a href="index.html">SONIDO <span>VIVO</span></a>
       </div>
+
+      <div class="header-search-bar">
+        <input type="text" id="header-search-input" placeholder="Buscar en catálogo...">
+        <button type="button" id="btn-header-search">Buscar</button>
+      </div>
+
       <div class="user-actions">
         <a href="login.html" class="btn-auth-pill">¿Ya tienes cuenta? Inicia Sesión</a>
+        <a href="carrito.html" class="cart-icon-btn" title="Ver Carrito">🛒
+          <span class="cart-badge-count" id="cart-count">0</span>
+        </a>
       </div>
     </div>
+
     <nav class="sub-nav-bar" aria-label="Navegación principal">
       <div class="sub-nav-container">
-        <ul>
+        <!-- Menu Hamburguesa -->
+        <details class="hamburger-menu">
+          <summary class="hamburger-btn">
+            <span>☰</span> Categorías
+          </summary>
+          <ul class="hamburger-dropdown">
+            <li><a href="productos.html">Todos los productos</a></li>
+            <li><a href="productos.html?cat=guitarras">Guitarras</a></li>
+            <li><a href="productos.html?cat=bajos">Bajos Eléctricos</a></li>
+            <li><a href="productos.html?cat=amplis">Amplificadores</a></li>
+            <li><a href="productos.html?cat=pedales">Pedales de Efectos</a></li>
+            <li><a href="productos.html?cat=baterias">Baterías & Percusión</a></li>
+            <li><a href="productos.html?cat=teclados">Teclados y Pianos</a></li>
+          </ul>
+        </details>
+
+        <!-- Links Principales -->
+        <ul class="main-nav-links">
           <li><a href="index.html">Inicio</a></li>
           <li><a href="productos.html">Ver Catálogo</a></li>
           <li><a href="nosotros.html">Sobre Nosotros</a></li>
-          <li><a href="blogs.html">Blogs</a></li>
           <li><a href="contacto.html">Contacto</a></li>
           <li><a href="admin/home.html">Portal Admin</a></li>
         </ul>
@@ -38,14 +64,14 @@
     <div style="background: #ffffff; padding: 2.5rem; border-radius: 10px; border: 1px solid var(--border-color); box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
       
       <h2 style="font-size: 1.8rem; margin-bottom: 0.5rem; color: #0f172a;">Crear Cuenta de Cliente</h2>
-      <p style="color: #64748b; font-size: 0.9rem; margin-bottom: 2rem;">Regístrate para comprar instrumentos y gestionar tus despachos a todo Chile.</p>
+      <p style="color: #64748b; font-size: 0.9rem; margin-bottom: 2rem;">Regístrate para comprar instrumentos y gestionar tus despachos.</p>
 
       <form id="form-registro" novalidate>
         
         <!-- RUT -->
         <div style="margin-bottom: 1.2rem;">
           <label for="run" style="display: block; font-weight: 600; font-size: 0.9rem; margin-bottom: 0.4rem;">RUN (Sin puntos y con guion)</label>
-          <input type="text" id="run" name="run" placeholder="Ej: 19876543-K" style="width: 100%; padding: 0.7rem; border: 1px solid var(--border-color); border-radius: 6px; outline: none; font-size: 0.95rem;" required>
+          <input type="text" id="run" name="run" maxlength="10" placeholder="Ej: 19876543-K" style="width: 100%; padding: 0.7rem; border: 1px solid var(--border-color); border-radius: 6px; outline: none; font-size: 0.95rem;" required>
           <span class="msg-error" id="error-run" style="display: none; color: #ef4444; font-size: 0.8rem; margin-top: 0.3rem;"></span>
         </div>
 
@@ -66,40 +92,21 @@
         <!-- Teléfono -->
         <div style="margin-bottom: 1.2rem;">
           <label for="telefono" style="display: block; font-weight: 600; font-size: 0.9rem; margin-bottom: 0.4rem;">Teléfono de Contacto</label>
-          <input type="tel" id="telefono" name="telefono" placeholder="+56 9 1234 5678" style="width: 100%; padding: 0.7rem; border: 1px solid var(--border-color); border-radius: 6px; outline: none; font-size: 0.95rem;" required>
+          <input type="tel" id="telefono" name="telefono" maxlength="12" placeholder="+56 9 1234 5678" style="width: 100%; padding: 0.7rem; border: 1px solid var(--border-color); border-radius: 6px; outline: none; font-size: 0.95rem;" required>
           <span class="msg-error" id="error-telefono" style="display: none; color: #ef4444; font-size: 0.8rem; margin-top: 0.3rem;"></span>
-        </div>
-
-        <!-- Selectores Dinámicos Región y Comuna -->
-        <div style="display: flex; gap: 1rem; margin-bottom: 1.2rem;">
-          <div style="flex: 1;">
-            <label for="region" style="display: block; font-weight: 600; font-size: 0.9rem; margin-bottom: 0.4rem;">Región</label>
-            <select id="region" style="width: 100%; padding: 0.7rem; border: 1px solid var(--border-color); border-radius: 6px; outline: none; font-size: 0.95rem; background: #fff;">
-              <option value="">Seleccione Región</option>
-              <option value="Valparaíso">Valparaíso</option>
-              <option value="Metropolitana">Metropolitana</option>
-              <option value="Biobío">Biobío</option>
-            </select>
-          </div>
-          <div style="flex: 1;">
-            <label for="comuna" style="display: block; font-weight: 600; font-size: 0.9rem; margin-bottom: 0.4rem;">Comuna</label>
-            <select id="comuna" style="width: 100%; padding: 0.7rem; border: 1px solid var(--border-color); border-radius: 6px; outline: none; font-size: 0.95rem; background: #fff;" disabled>
-              <option value="">Seleccione Comuna</option>
-            </select>
-          </div>
         </div>
 
         <!-- Contraseña -->
         <div style="margin-bottom: 1.2rem;">
           <label for="password" style="display: block; font-weight: 600; font-size: 0.9rem; margin-bottom: 0.4rem;">Contraseña (Mínimo 6 caracteres)</label>
-          <input type="password" id="password" name="password" style="width: 100%; padding: 0.7rem; border: 1px solid var(--border-color); border-radius: 6px; outline: none; font-size: 0.95rem;" required>
+          <input type="password" id="password" name="password" maxlength="30" style="width: 100%; padding: 0.7rem; border: 1px solid var(--border-color); border-radius: 6px; outline: none; font-size: 0.95rem;" required>
           <span class="msg-error" id="error-password" style="display: none; color: #ef4444; font-size: 0.8rem; margin-top: 0.3rem;"></span>
         </div>
 
         <!-- Confirmar Contraseña -->
         <div style="margin-bottom: 1.8rem;">
           <label for="confirm-password" style="display: block; font-weight: 600; font-size: 0.9rem; margin-bottom: 0.4rem;">Confirmar Contraseña</label>
-          <input type="password" id="confirm-password" name="confirm-password" style="width: 100%; padding: 0.7rem; border: 1px solid var(--border-color); border-radius: 6px; outline: none; font-size: 0.95rem;" required>
+          <input type="password" id="confirm-password" name="confirm-password" maxlength="30" style="width: 100%; padding: 0.7rem; border: 1px solid var(--border-color); border-radius: 6px; outline: none; font-size: 0.95rem;" required>
           <span class="msg-error" id="error-confirm" style="display: none; color: #ef4444; font-size: 0.8rem; margin-top: 0.3rem;"></span>
         </div>
 

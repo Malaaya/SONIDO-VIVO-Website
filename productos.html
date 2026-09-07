@@ -8,30 +8,56 @@
 </head>
 <body>
 
+<!-- Header Superior -->
   <header class="site-header">
     <div class="top-bar">
       <div class="brand-logo">
         <a href="index.html">SONIDO <span>VIVO</span></a>
       </div>
+
       <div class="header-search-bar">
-        <input type="text" id="search-input" placeholder="Buscar producto, marca o categoría...">
-        <button type="button" id="search-button">Buscar</button>
+        <input type="text" id="header-search-input" placeholder="Buscar en catálogo...">
+        <button type="button" id="btn-header-search">Buscar</button>
       </div>
+
       <div class="user-actions">
-        <a href="index.html" class="btn-auth-pill">← Volver al Inicio</a>
+        <a href="login.html" class="btn-auth-pill">¿Ya tienes cuenta? Inicia Sesión</a>
+        <a href="carrito.html" class="cart-icon-btn" title="Ver Carrito">🛒
+          <span class="cart-badge-count" id="cart-count">0</span>
+        </a>
       </div>
     </div>
+
+    <nav class="sub-nav-bar" aria-label="Navegación principal">
+      <div class="sub-nav-container">
+        <!-- Menú Hamburguesa de Categorías -->
+        <details class="hamburger-menu">
+          <summary class="hamburger-btn">
+            <span>☰</span> Categorías
+          </summary>
+          <ul class="hamburger-dropdown">
+            <li><a href="productos.html">Todos los productos</a></li>
+            <li><a href="productos.html?cat=guitarras">Guitarras</a></li>
+            <li><a href="productos.html?cat=bajos">Bajos Eléctricos</a></li>
+            <li><a href="productos.html?cat=amplis">Amplificadores</a></li>
+            <li><a href="productos.html?cat=pedales">Pedales de Efectos</a></li>
+            <li><a href="productos.html?cat=baterias">Baterías & Percusión</a></li>
+            <li><a href="productos.html?cat=teclados">Teclados y Pianos</a></li>
+          </ul>
+        </details>
+
+        <!-- Links Principales -->
+        <ul class="main-nav-links">
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="productos.html">Ver Catálogo</a></li>
+          <li><a href="nosotros.html">Sobre Nosotros</a></li>
+          <li><a href="blogs.html">Blogs</a></li>
+          <li><a href="contacto.html">Contacto</a></li>
+          <li><a href="admin/home.html">Portal Admin</a></li>
+        </ul>
+      </div>
+    </nav>
   </header>
-
-  <main class="shop-section-container">
-    <div class="shop-header-intro">
-      <h2 id="titulo-categoria">Catálogo Completo</h2>
-      <p>Explora todos nuestros instrumentos y equipos con garantía directa.</p>
-    </div>
-
-    <!-- Contenedor vacío donde el Script inyectará los 51 productos -->
-    <div class="products-shelf-grid" id="contenedor-productos"></div>
-  </main>
 
   <!-- Importaciones desde la carpeta js/ -->
   <script src="js/datos.js"></script>
