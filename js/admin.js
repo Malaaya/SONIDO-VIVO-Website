@@ -17,6 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
   function guardarProductosAdmin(lista) {
     localStorage.setItem("sonido_vivo_productos", JSON.stringify(lista));
     renderizarTablaAdmin();
+    actualizarMetricas();
   }
 
   function renderizarTablaAdmin() {
@@ -47,11 +48,15 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // 3. Funciones para Usuarios
+  function obtenerUsuariosAdmin() {
+    return JSON.parse(localStorage.getItem("sonido_vivo_usuarios")) || [];
+  }
+
   function renderizarUsuariosAdmin() {
     const tbodyUsers = document.getElementById("admin-usuarios-body");
     if (!tbodyUsers) return;
 
-    const usuarios = JSON.parse(localStorage.getItem("sonido_vivo_usuarios")) || [];
+    const usuarios = obtenerUsuariosAdmin();
 
     if (usuarios.length === 0) {
       tbodyUsers.innerHTML = `<tr><td colspan="5" style="text-align: center; color: #64748b; padding: 2rem;">No hay clientes registrados en el sistema.</td></tr>`;
@@ -69,6 +74,69 @@ document.addEventListener("DOMContentLoaded", () => {
         </td>
       </tr>
     `).join('');
+  }
+
+  // Funciones para Compras
+  function obtenerTodasLasCompras() {
+    const usuarios = obtenerUsuariosAdmin();
+    let todasLasCompras = [];
+
+    usuarios.forEach(u => {
+      const historialCliente = JSON.parse(localStorage.getItem(`historial_${u.run}`)) || [];
+      historialCliente.forEach(compra => {
+        todasLasCompras.push({
+          ...compra,
+          clienteNombre: u.nombre,
+          clienteRun: u.run
+        });
+      });
+    });
+
+    return todasLasCompras;
+  }
+
+  function renderizarHistorialComprasAdmin() {
+    const tbodyCompras = document.getElementById("admin-compras-body");
+    if (!tbodyCompras) return;
+
+    const compras = obtenerTodasLasCompras();
+
+    if (compras.length === 0) {
+      tbodyCompras.innerHTML = `<tr><td colspan="5" style="text-align: center; color: #64748b; padding: 2rem;">Aún no se han registrado compras en la tienda.</td></tr>`;
+      return;
+    }
+
+    tbodyCompras.innerHTML = compras.map(c => {
+      const resumenItems = c.items.map(item => `${item.cantidad}x ${item.nombre}`).join('<br>');
+
+      return `
+        <tr>
+          <td><strong style="color: #0f172a;">#${c.id}</strong></td>
+          <td>
+            <strong>${c.clienteNombre}</strong><br>
+            <small style="color: #64748b;">${c.clienteRun}</small>
+          </td>
+          <td>${c.fecha} - ${c.hora}</td>
+          <td style="font-size: 0.85rem; color: #334155;">${resumenItems}</td>
+          <td><strong style="color: #059669; font-size: 1rem;">$${c.total.toLocaleString("es-CL")}</strong></td>
+        </tr>
+      `;
+    }).join('');
+  }
+
+  // Funciones para Métricas
+  function actualizarMetricas() {
+    const productos = obtenerProductosAdmin();
+    const usuarios = obtenerUsuariosAdmin();
+    const compras = obtenerTodasLasCompras();
+
+    const statProd = document.getElementById("stat-productos");
+    const statUser = document.getElementById("stat-usuarios");
+    const statVentas = document.getElementById("stat-ventas");
+
+    if (statProd) statProd.textContent = productos.length;
+    if (statUser) statUser.textContent = usuarios.length;
+    if (statVentas) statVentas.textContent = compras.length;
   }
 
   // 4. Formulario Agregar Producto
@@ -113,14 +181,15 @@ document.addEventListener("DOMContentLoaded", () => {
   // 6. Borrado Global de Usuario
   window.eliminarUsuarioAdmin = function(run) {
     if (confirm(`¿Estás seguro de que deseas eliminar la cuenta con RUN ${run}?`)) {
-      let usuarios = JSON.parse(localStorage.getItem("sonido_vivo_usuarios")) || [];
-      usuarios = usuarios.filter(u => u.run !== run);
+      let usuarios = obtenerUsuariosAdmin().filter(u => u.run !== run);
       localStorage.setItem("sonido_vivo_usuarios", JSON.stringify(usuarios));
 
       // Limpiar también el historial de compras de ese RUN
       localStorage.removeItem(`historial_${run}`);
 
       renderizarUsuariosAdmin();
+      renderizarHistorialComprasAdmin();
+      actualizarMetricas();
       alert("Usuario eliminado correctamente.");
     }
   };
@@ -128,6 +197,8 @@ document.addEventListener("DOMContentLoaded", () => {
   // Carga inicial de ambas tablas
   renderizarTablaAdmin();
   renderizarUsuariosAdmin();
+  renderizarHistorialComprasAdmin();
+  actualizarMetricas();
 });
 
 // Botón de Logout Admin

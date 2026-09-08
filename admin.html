@@ -172,6 +172,10 @@
         <span>Clientes Registrados</span>
         <strong id="stat-usuarios">0</strong>
       </div>
+      <div class="stat-pill">
+        <span>Total Ventas Realizadas</span>
+        <strong id="stat-ventas">0</strong>
+      </div>
     </div>
 
     <!-- Inventario de productos -->
@@ -226,6 +230,27 @@
         </div>
       </section>
     </div>
+
+    <!-- Historial de compras -->
+    <section class="admin-card" style="margin-top: 2rem; grid-column: 1 / -1;">
+      <h3>Historial General de Ventas y Pedidos</h3>
+      <div style="overflow-x: auto; max-height: 400px;">
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>ID Pedido</th>
+              <th>Cliente / RUN</th>
+              <th>Fecha y Hora</th>
+              <th>Artículos Comprados</th>
+              <th>Total Pagado</th>
+            </tr>
+          </thead>
+          <tbody id="admin-compras-body">
+            <!-- Render dinámico de ventas -->
+          </tbody>
+        </table>
+      </div>
+    </section>
 
     <!-- Gestion de clientes -->
     <section class="admin-card" style="margin-top: 2rem; grid-column: 1 / -1;">
