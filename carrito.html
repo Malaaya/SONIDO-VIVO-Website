@@ -9,17 +9,26 @@
 </head>
 <body>
 
-  <!-- Header Superior -->
-  <header class="site-header">
-    <div class="top-bar">
-      <div class="brand-logo">
-        <a href="index.html">SONIDO <span>VIVO</span></a>
-      </div>
-      <div class="user-actions">
-        <a href="productos.html" class="btn-auth-pill">← Volver al Catálogo</a>
-      </div>
+<header class="site-header">
+  <div class="top-bar" style="display: flex; align-items: center; justify-content: space-between; position: relative;">
+
+    <!-- Logo Izquierda -->
+    <div class="brand-logo">
+      <a href="index.html">SONIDO <span>VIVO</span></a>
     </div>
-  </header>
+
+    <!-- Usuario Centro -->
+    <div class="user-center" style="position: absolute; left: 50%; transform: translateX(-50%);">
+      <a href="login.html" class="btn-auth-pill">Acceder / Registro</a>
+    </div>
+
+    <!-- Volver Derecha -->
+    <div class="user-actions">
+      <a href="productos.html" class="btn-catalog-link">← Volver al Catálogo</a>
+    </div>
+
+  </div>
+</header>
 
   <main style="max-width: 1100px; margin: 2.5rem auto; padding: 0 1rem;">
     <h2 style="font-size: 2rem; color: #0f172a; margin-bottom: 1.5rem;">Tu Carrito de Compras</h2>
@@ -71,9 +80,8 @@
           <strong id="cart-total" style="color: #000000; font-size: 1.3rem;">$0</strong>
         </div>
 
-        <button onclick="alert('Simulación de pago: Redirigiendo a Webpay...')" style="width: 100%; background: #0f172a; color: #ffffff; padding: 0.9rem; border: none; border-radius: 8px; font-weight: 700; font-size: 1rem; cursor: pointer;">
-          Pagar con Webpay
-        </button>
+
+        <button onclick="procesarPago()" class="btn-primary-block">Pagar con Webpay</button>
       </section>
 
     </div>
@@ -81,5 +89,7 @@
 
   <script src="js/datos.js"></script>
   <script src="js/carrito.js"></script>
+  <script src="js/login.js"></script>
 </body>
 </html>
+s

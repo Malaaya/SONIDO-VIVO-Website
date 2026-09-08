@@ -62,6 +62,8 @@ document.addEventListener("DOMContentLoaded", () => {
         };
         localStorage.setItem("sonido_vivo_sesion", JSON.stringify(sesionActiva));
 
+        actualizarEstadoAuthHeader();
+
         // Mostrar el modal
         const modal = document.getElementById("modal-exito-login");
         const saludo = document.getElementById("modal-login-saludo");
@@ -84,6 +86,43 @@ document.addEventListener("DOMContentLoaded", () => {
       } else {
         mostrarError("error-login-password", "RUN o contraseña incorrectos.");
       }
+    });
+  }
+});
+
+function actualizarEstadoAuthHeader() {
+  const sesion = JSON.parse(localStorage.getItem("sonido_vivo_sesion"));
+  const btnAuth = document.querySelector(".btn-auth");
+
+  if (btnAuth && sesion) {
+    const primerNombre = sesion.nombre.split(" ")[0];
+    btnAuth.textContent = `Hola, ${primerNombre}`;
+    btnAuth.href = "#";
+    btnAuth.onclick = (e) => {
+      e.preventDefault();
+      if (confirm("¿Deseas cerrar sesión?")) {
+        localStorage.removeItem("sonido_vivo_sesion");
+        window.location.reload();
+      }
+    };
+  }
+}
+
+// Actualizar el botón del Header si hay sesión activa en cualquier página
+document.addEventListener("DOMContentLoaded", () => {
+  const sesion = JSON.parse(localStorage.getItem("sonido_vivo_sesion"));
+  const botonesAuth = document.querySelectorAll(".btn-auth-pill");
+
+  if (sesion && sesion.nombre) {
+    const primerNombre = sesion.nombre.split(" ")[0];
+    
+    botonesAuth.forEach(btn => {
+      btn.textContent = `👋 Hola, ${primerNombre}`;
+      btn.href = "perfil.html";
+      
+        btn.textContent = `👋 Hola, ${primerNombre}`;
+      btn.href = "perfil.html"; // <-- Cambia el "#" por "perfil.html"
+      btn.onclick = null;
     });
   }
 });

@@ -494,3 +494,21 @@ body {
 .btn-add-cart:hover {
   background-color: #d9a200;
 }
+
+/* Botón secundario de navegación en Header */
+.btn-catalog-link {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 0.88rem;
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.2s ease;
+}
+
+.btn-catalog-link:hover {
+  background-color: rgba(255, 255, 255, 0.25);
+  color: #ffffff;
+}
