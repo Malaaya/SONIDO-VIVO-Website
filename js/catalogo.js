@@ -8,19 +8,20 @@ document.addEventListener("DOMContentLoaded", () => {
   const catParam = urlParams.get("cat");
   const busquedaParam = urlParams.get("buscar");
 
-  let productosAMostrar = productosDB;
+  const productosLista = JSON.parse(localStorage.getItem("sonido_vivo_productos")) || (typeof productosDB !== "undefined" ? productosDB : []);
+  let productosAMostrar = productosLista;
 
-  if (catParam) {
-    productosAMostrar = productosDB.filter(p => p.catSlug === catParam.toLowerCase());
+if (catParam) {
+    productosAMostrar = productosLista.filter(p => p.catSlug === catParam.toLowerCase());
     if (productosAMostrar.length > 0) {
       tituloHeader.textContent = productosAMostrar[0].categoria;
     }
   } else if (busquedaParam) {
     const q = busquedaParam.toLowerCase();
-    productosAMostrar = productosDB.filter(p => 
+    productosAMostrar = productosLista.filter(p => 
       p.nombre.toLowerCase().includes(q) || 
       p.marca.toLowerCase().includes(q) || 
-      p.categoria.toLowerCase().includes(q)
+      (p.categoria && p.categoria.toLowerCase().includes(q))
     );
     tituloHeader.textContent = `Resultados para: "${busquedaParam}"`;
   }

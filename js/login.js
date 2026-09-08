@@ -53,16 +53,21 @@ document.addEventListener("DOMContentLoaded", () => {
         u => u.run.toUpperCase() === runIngresado && u.password === passwordIngresada
       );
 
+
+
       if (usuarioEncontrado) {
         // Guardar sesión activa
+        // asignamos rol
+        const esAdmin = (usuarioEncontrado.email === "admin@sonidovivo.cl" || usuarioEncontrado.run === "11111111-1");
+
         const sesionActiva = {
           run: usuarioEncontrado.run,
           nombre: usuarioEncontrado.nombre,
-          email: usuarioEncontrado.email
+          email: usuarioEncontrado.email,
+          rol: esAdmin ? "admin" : "cliente"
         };
         localStorage.setItem("sonido_vivo_sesion", JSON.stringify(sesionActiva));
 
-        actualizarEstadoAuthHeader();
 
         // Mostrar el modal
         const modal = document.getElementById("modal-exito-login");
@@ -74,14 +79,34 @@ document.addEventListener("DOMContentLoaded", () => {
           saludo.textContent = `¡Hola, ${primerNombre}!`;
         }
 
+
+
         if (modal) {
           modal.style.display = "flex";
         }
 
         if (btnCatalogo) {
-          btnCatalogo.addEventListener("click", () => {
-            window.location.href = "index.html";
-          });
+          if (esAdmin) {
+            btnCatalogo.textContent = "Ir al Panel Admin";
+            btnCatalogo.onclick = () => { window.location.href = "admin.html"; };
+          } else {
+            btnCatalogo.textContent = "Ir a la Tienda";
+            btnCatalogo.onclick = () => { window.location.href = "index.html"; };
+          }
+        }
+        
+        if (modal) {
+          modal.style.display = "flex";
+        }
+
+        if (btnCatalogo) {
+          if (esAdmin) {
+            btnCatalogo.textContent = "Ir al Panel Admin";
+            btnCatalogo.onclick = () => { window.location.href = "admin.html"; };
+          } else {
+            btnCatalogo.textContent = "Ir a la Tienda";
+            btnCatalogo.onclick = () => { window.location.href = "index.html"; };
+          }
         }
       } else {
         mostrarError("error-login-password", "RUN o contraseña incorrectos.");
@@ -90,23 +115,23 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
-function actualizarEstadoAuthHeader() {
-  const sesion = JSON.parse(localStorage.getItem("sonido_vivo_sesion"));
-  const btnAuth = document.querySelector(".btn-auth");
+document.addEventListener("DOMContentLoaded", () => {
+  const enlacesAdmin = document.querySelectorAll(".link-panel-admin");
 
-  if (btnAuth && sesion) {
-    const primerNombre = sesion.nombre.split(" ")[0];
-    btnAuth.textContent = `Hola, ${primerNombre}`;
-    btnAuth.href = "#";
-    btnAuth.onclick = (e) => {
+  enlacesAdmin.forEach(enlace => {
+    enlace.addEventListener("click", (e) => {
       e.preventDefault();
-      if (confirm("¿Deseas cerrar sesión?")) {
-        localStorage.removeItem("sonido_vivo_sesion");
-        window.location.reload();
+      const sesion = JSON.parse(localStorage.getItem("sonido_vivo_sesion"));
+
+      if (sesion && sesion.rol === "admin") {
+        window.location.href = "admin.html";
+      } else {
+        alert("Debes iniciar sesión con una cuenta de Administrador para acceder.");
+        window.location.href = "login.html";
       }
-    };
-  }
-}
+    });
+  });
+});
 
 // Actualizar el botón del Header si hay sesión activa en cualquier página
 document.addEventListener("DOMContentLoaded", () => {
@@ -116,12 +141,15 @@ document.addEventListener("DOMContentLoaded", () => {
   if (sesion && sesion.nombre) {
     const primerNombre = sesion.nombre.split(" ")[0];
     
+
     botonesAuth.forEach(btn => {
-      btn.textContent = `👋 Hola, ${primerNombre}`;
-      btn.href = "perfil.html";
-      
+      if (sesion.rol === "admin") {
+        btn.textContent = `Admin: ${primerNombre}`;
+        btn.href = "admin.html";
+      } else {
         btn.textContent = `👋 Hola, ${primerNombre}`;
-      btn.href = "perfil.html"; // <-- Cambia el "#" por "perfil.html"
+        btn.href = "perfil.html";
+      }
       btn.onclick = null;
     });
   }
