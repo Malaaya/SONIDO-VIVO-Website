@@ -19,6 +19,48 @@ function actualizarContadorHeader() {
   }
 }
 
+// Modal estilizado reutilizable para agregar productos
+function mostrarModalProductoAgregado(producto) {
+  let modal = document.getElementById("modal-producto-agregado");
+
+  if (!modal) {
+    modal = document.createElement("div");
+    modal.id = "modal-producto-agregado";
+    modal.style.cssText = "display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.75); backdrop-filter: blur(4px); z-index: 9999; align-items: center; justify-content: center;";
+    
+    modal.innerHTML = `
+      <div style="background: #ffffff; padding: 2.2rem; border-radius: 16px; max-width: 440px; width: 90%; text-align: center; box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2);">
+        <div style="font-size: 3rem; margin-bottom: 0.5rem;">🛒</div>
+        <h3 style="font-size: 1.4rem; color: #0f172a; margin-bottom: 0.6rem; font-weight: 800;">¡Agregado al Carrito!</h3>
+        <p id="modal-prod-desc" style="color: #475569; font-size: 0.95rem; line-height: 1.5; margin-bottom: 1.8rem;"></p>
+        <div style="display: flex; gap: 0.8rem; justify-content: center;">
+          <button id="btn-seguir-comprando" style="background: #f1f5f9; color: #334155; font-weight: 700; border: 1px solid #cbd5e1; padding: 0.7rem 1.2rem; border-radius: 8px; font-size: 0.9rem; cursor: pointer;">
+            Seguir Comprando
+          </button>
+          <button id="btn-ir-al-carrito" style="background: var(--accent-pink, #e91e63); color: #ffffff; font-weight: 700; border: none; padding: 0.7rem 1.4rem; border-radius: 8px; font-size: 0.9rem; cursor: pointer;">
+            Ver Carrito
+          </button>
+        </div>
+      </div>
+    `;
+    document.body.appendChild(modal);
+
+    document.getElementById("btn-seguir-comprando").addEventListener("click", () => {
+      modal.style.display = "none";
+    });
+
+    document.getElementById("btn-ir-al-carrito").addEventListener("click", () => {
+      window.location.href = "carrito.html";
+    });
+  }
+
+  const descEl = document.getElementById("modal-prod-desc");
+  if (descEl) {
+    descEl.innerHTML = `Has añadido <strong>${producto.nombre}</strong> (${producto.marca}) a tu pedido con éxito.`;
+  }
+  modal.style.display = "flex";
+}
+
 // Función global para agregar productos desde cualquier página
 function agregarAlCarrito(codigo) {
   const productos = JSON.parse(localStorage.getItem("sonido_vivo_productos")) || (typeof productosDB !== "undefined" ? productosDB : []);
@@ -51,7 +93,7 @@ function agregarAlCarrito(codigo) {
   }
 
   guardarCarrito(carrito);
-  alert(`¡${productoEncontrado.nombre} agregado al carrito!`);
+  mostrarModalProductoAgregado(productoEncontrado);
 }
 
 // Renderizado de la tabla en carrito.html
