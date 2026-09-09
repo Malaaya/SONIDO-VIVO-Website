@@ -512,3 +512,120 @@ body {
   background-color: rgba(255, 255, 255, 0.25);
   color: #ffffff;
 }
+
+
+/* Vista movil */
+
+@media (max-width: 768px) {
+  /* 1. Header flexible y ordenado verticalmente */
+  .top-bar {
+    padding: 0.8rem 1rem;
+    flex-direction: column;
+    gap: 0.8rem;
+    align-items: stretch;
+  }
+
+  .brand-logo {
+    text-align: center;
+  }
+
+  .brand-logo a {
+    font-size: 1.4rem;
+  }
+
+  .header-search-bar {
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .user-actions {
+    justify-content: center;
+    width: 100%;
+    flex-wrap: wrap;
+  }
+
+  /* 2. Barra de Navegación y Categorías */
+  .sub-nav-container {
+    padding: 0.5rem 1rem;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.8rem;
+  }
+
+  .hamburger-menu {
+    width: 100%;
+  }
+
+  .hamburger-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .hamburger-dropdown {
+    width: 100%;
+    position: static; 
+    box-shadow: none;
+    margin-top: 0.3rem;
+  }
+
+  .main-nav-links {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.8rem;
+  }
+
+  .main-nav-links a {
+    font-size: 0.85rem;
+  }
+
+  /* 3. Banner Hero adaptable */
+  .hero-static-banner {
+    padding: 2rem 1rem !important;
+    min-height: auto !important;
+    text-align: center;
+  }
+
+  .hero-static-title {
+    font-size: 1.6rem !important;
+  }
+
+  .hero-static-desc {
+    font-size: 0.95rem !important;
+  }
+
+  /* 4. Grilla de Productos fluida */
+  .products-shelf-grid {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)) !important;
+    gap: 1rem !important;
+  }
+
+  .shelf-product-img {
+    height: 130px !important;
+  }
+
+  .shelf-product-title {
+    font-size: 0.9rem !important;
+  }
+
+  .shelf-product-price {
+    font-size: 1rem !important;
+  }
+
+  /* 5. Secciones de Tienda y Formularios */
+  .shop-section-container {
+    padding: 0 0.8rem !important;
+    margin: 1.5rem auto !important;
+  }
+
+  /* 6. Footer adaptable */
+  .footer-inner {
+    grid-template-columns: 1fr !important;
+    text-align: center;
+    gap: 1.5rem !important;
+  }
+
+  .footer-payment-badges,
+  .brands-showcase {
+    justify-content: center;
+  }
+}

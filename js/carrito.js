@@ -184,6 +184,42 @@ function vaciarCarrito() {
     renderizarCarrito();
   }
 }
+
+// Modal estilizado de confirmación de pago
+function mostrarModalPagoExitoso(orden) {
+  let modal = document.getElementById("modal-pago-exitoso");
+
+  if (!modal) {
+    modal = document.createElement("div");
+    modal.id = "modal-pago-exitoso";
+    modal.style.cssText = "display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.75); backdrop-filter: blur(4px); z-index: 9999; align-items: center; justify-content: center;";
+    
+    modal.innerHTML = `
+      <div style="background: #ffffff; padding: 2.5rem; border-radius: 16px; max-width: 450px; width: 90%; text-align: center; box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2);">
+        <div style="font-size: 3.2rem; margin-bottom: 0.5rem;">🎉</div>
+        <h3 style="font-size: 1.5rem; color: #0f172a; margin-bottom: 0.5rem; font-weight: 800;">¡Pago Aprobado!</h3>
+        <p style="color: #10b981; font-weight: 700; font-size: 0.95rem; margin-bottom: 1rem;">Transacción Webpay Plus exitosa</p>
+        <p id="modal-pago-desc" style="color: #475569; font-size: 0.92rem; line-height: 1.5; margin-bottom: 1.8rem;"></p>
+        <button id="btn-ir-a-perfil" style="background: var(--accent-pink, #e91e63); color: #ffffff; font-weight: 700; border: none; padding: 0.8rem 1.8rem; border-radius: 8px; font-size: 1rem; cursor: pointer; transition: background 0.2s; width: 100%;">
+          Ver en Mi Historial de Compras
+        </button>
+      </div>
+    `;
+    document.body.appendChild(modal);
+
+    document.getElementById("btn-ir-a-perfil").addEventListener("click", () => {
+      window.location.href = "perfil.html";
+    });
+  }
+
+  const descEl = document.getElementById("modal-pago-desc");
+  if (descEl) {
+    descEl.innerHTML = `Tu orden <strong>#${orden.id}</strong> por un total de <strong>$${orden.total.toLocaleString("es-CL")}</strong> fue procesada correctamente.`;
+  }
+
+  modal.style.display = "flex";
+}
+
 // Procesar compra y registrarla en el historial del usuario
 function procesarPago() {
   const sesion = JSON.parse(localStorage.getItem("sonido_vivo_sesion"));
@@ -202,7 +238,7 @@ function procesarPago() {
     return;
   }
 
-  // 3. Obtener o inicializar el historial del usuario (usando su RUN como identificador)
+  // 3. Obtener historial del usuario
   const claveHistorial = `historial_${sesion.run}`;
   const historialPrevio = JSON.parse(localStorage.getItem(claveHistorial)) || [];
 
@@ -218,13 +254,18 @@ function procesarPago() {
     total: total
   };
 
-  // 4. Guardar la compra en LocalStorage
-  historialPrevio.unshift(nuevaCompra); // Queda la más reciente al principio
+  // Guardar la compra en LocalStorage
+  historialPrevio.unshift(nuevaCompra);
   localStorage.setItem(claveHistorial, JSON.stringify(historialPrevio));
 
-  // 5. Vaciar el carrito de compras
+  // Vaciar el carrito de compras
   localStorage.removeItem("sonido_vivo_carrito");
   guardarCarrito([]);
+  renderizarCarrito();
+
+  // Desplegar modal estilizado
+  mostrarModalPagoExitoso(nuevaCompra);
+}
 
   alert("¡Compra procesada con éxito! Redirigiendo a tu perfil...");
   window.location.href = "perfil.html";
